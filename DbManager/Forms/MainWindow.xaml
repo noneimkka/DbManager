@@ -1,0 +1,47 @@
+﻿<Window x:Class="DbManager.Forms.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Database Management" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Левая панель управления таблицами -->
+        <StackPanel Grid.Column="0" Background="LightGray" Margin="10">
+            <TextBlock Text="Таблицы" FontWeight="Bold" Margin="0,0,0,10"/>
+            <ListBox x:Name="TablesListBox" SelectionChanged="TablesListBox_SelectionChanged"/>
+
+            <Button Content="Добавить Таблицу" Click="AddTableButton_Click" Margin="0,10,0,0"/>
+            <Button Content="Удалить Таблицу" Click="DeleteTableButton_Click" Margin="0,5,0,0"/>
+        </StackPanel>
+
+        <!-- Основная часть -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Таблица данных -->
+            <DataGrid x:Name="DataGrid"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="False"
+                      Margin="5"
+                      CellEditEnding="DataGrid_CellEditEnding"/>
+
+            <!-- Панель управления записями -->
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                <Button Content="Добавить Запись" Click="AddRecordButton_Click" Margin="5"/>
+                <Button Content="Удалить Запись" Click="DeleteRecordButton_Click" Margin="5"/>
+                <Button Content="Обновить" Click="RefreshButton_OnClick" Margin="5"/>
+                <Button Content="Сохранить" Click="SaveDatabaseButton_Click" Margin="5"/>
+                <Button Content="Загрузить" Click="LoadDatabaseButton_Click" Margin="5"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
